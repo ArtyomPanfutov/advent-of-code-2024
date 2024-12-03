@@ -30,7 +30,7 @@ fun main() {
 }
 
 fun solveP2() {
-    val pairs = parseInput(object {}.javaClass.getResource("/day-input.txt").readText())
+    val pairs = parseInput(getInput("/day-input.txt"))
     val right = pairs.map { it.second }
     val freq = mutableMapOf<Int, Int>()
     right.forEach {
@@ -43,7 +43,7 @@ fun solveP2() {
 }
 
 private fun solveP1() {
-    val pairs = parseInput(object {}.javaClass.getResource("/day-input.txt").readText())
+    val pairs = parseInput(getInput("/day-input.txt"))
     val left = pairs.map { it.first }.sorted()
     val right = pairs.map { it.second }.sorted()
 
