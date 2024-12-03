@@ -4,6 +4,7 @@ import kotlin.math.abs
 
 fun main() {
     Day2().solveP1()
+    Day2().solveP2()
 }
 
 class Day2 {
@@ -21,7 +22,19 @@ class Day2 {
     fun solveP1() {
         val reports = parseInput(getInput("/day2-input.txt"))
 
-        println(reports.count { safe(it) })
+        println(reports.count { safeP1(it) })
+    }
+
+    fun solveP2() {
+        val reports = parseInput(getInput("/day2-input.txt"))
+
+        println(reports.count { level ->
+            for (idx in level.indices) {
+                val safe = safeP1(level.toMutableList().apply { removeAt(idx) })
+                if (safe) return@count true
+            }
+            return@count false
+        })
     }
 
     private fun parseInput(input: String) = input.lines().map {
@@ -45,7 +58,7 @@ class Day2 {
         nums
     }
 
-    private fun safe(level: List<Int>): Boolean {
+    private fun safeP1(level: List<Int>): Boolean {
         if (level.isEmpty()) {
             return false
         }
